@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>AS Traders | Sign-in</title>
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/odometer.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/owl.min.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <style>
+        .admin-sign-in-button {
+    display: inline-block;
+    padding: 10px 20px;
+
+    color: rgb(0, 0, 0); /* White text color */
+    text-decoration: none;
+    border-radius: 5px; /* Rounded corners */
+    font-size: 14px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: -36px;
+    transition: background-color 0.3s;
+}
+
+
+
+/* Ensure the container is positioned relative to contain the absolute positioning of the button */
+.account-body {
+    position: relative;
+}
+    </style>
+</head>
+
+<body>
+
+    <div class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-icon">
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <!--============= Sign In Section Starts Here =============-->
+    <div class="account-section bg_img" data-background="assets/images/account-bg.jpg">
+        <div class="container">
+            <div class="account-title text-center">
+                <a href="index.html" class="back-home"><i class="fas fa-angle-left"></i><span>Back <span
+                            class="d-none d-sm-inline-block">To AS Traders</span></span></a>
+                <a href="#0" class="logo">
+                    <img src="assets/images/logo/logom.png" alt="logo">
+                </a>
+            </div>
+           <div class="account-wrapper">
+    <div class="account-body">
+        <a href="./admin/sign-in.html" class="admin-sign-in-button">Sign In as Admin</a>
+        <h4 class="title mb-20">Welcome To AS Traders</h4>
+        <form class="account-form" id="signInForm">
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" placeholder="Enter Your Email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" placeholder="Enter Your Password" id="password" name="password">
+                <span class="sign-in-recovery">Forgot your password? <a href="#" id="forgotPasswordLink">recover password</a></span>
+            </div>
+            <div class="form-group text-center">
+                <button type="submit" class="mt-2 mb-2">Sign In</button>
+            </div>
+        </form>
+    </div>
+    <div class="account-header pb-0">
+        <span class="d-block mt-15">Don't have an account? <a href="sign-up.html">Sign Up Here</a></span>
+    </div>
+</div>
+
+        </div>
+    </div>
+    <!--============= Sign In Section Ends Here =============-->
+
+    <!-- Scripts -->
+    <script type="module" src="./script/sign-in.js"></script>
+
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/modernizr-3.6.0.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/magnific-popup.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/viewport.jquery.js"></script>
+    <script src="assets/js/nice-select.js"></script>
+    <script src="assets/js/owl.min.js"></script>
+    <script src="assets/js/paroller.js"></script>
+    <script src="assets/js/main.js"></script>
+    <!-- Firebase Authentication -->
+    <script type="module" src="./script/sign-in.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>AS Trader</title>
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/odometer.css">
+    <link rel="stylesheet" href="assets/css/nice-select.css">
+    <link rel="stylesheet" href="assets/css/owl.min.css">
+    <link rel="stylesheet" href="assets/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="assets/css/flaticon.css">
+    <link rel="stylesheet" href="assets/css/main.css">
+
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
+    <style>
+        .welcome-letter {
+            width: 100%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .welcome-letter h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .welcome-letter .content {
+            margin-top: 20px;
+        }
+
+        .welcome-letter .content p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main--body dashboard-bg">
+        <!--========== Preloader ==========-->
+
+        <div class="overlay"></div>
+
+        <div class="notify-overlay"></div>
+        <section class="dashboard-section">
+            <div class="side-header oh">
+                <div class="cross-header-bar d-xl-none">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="site-header-container">
+                    <div class="side-logo">
+                        <a href="dashboard.html">
+                            <img src="assets/images/logo/logo.png" alt="logo">
+                        </a>
+                    </div>
+                    <ul class="dashboard-menu">
+                        <li>
+                            <a href="dashboard.html" ><i class="flaticon-man"></i>Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="welcome_letter.html" class="active"><i class="flaticon-coin"></i>Letter</a>
+                        </li>
+                        <li>
+                            <a href="operations.html"><i class="flaticon-coin"></i>Operations</a>
+                        </li>
+                        <li>
+                            <a href="deposit.html"><i class="flaticon-interest"></i>Deposits</a>
+                        </li>
+                        <li>
+                            <a href="withdraw.html"><i class="flaticon-atm"></i>Withdraw</a>
+                        </li>
+                        <li>
+                            <a href="roi-transfer.html"><i class="flaticon-exchange"></i>Fund Transfer</a>
+                        </li>
+                        <li>
+                            <a href="partners.html"><i class="flaticon-deal"></i>Partners</a>
+                        </li>
+                        <li>
+                            <a href="setting.html"><i class="flaticon-gears"></i>Settings</a>
+                        </li>
+                        <li>
+                            <a href="notification.html"><i class="flaticon-bell"></i>Notifications</a>
+                        </li>
+                        <li>
+                            <a href="ticket.html"><i class="flaticon-sms"></i>Tickets</a>
+                        </li>
+                      
+                        <li>
+                            <a href="javascript:void(0)" id="logout-link"><i class="flaticon-right-arrow"></i>Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="dasboard-body">
+                <div class="dashboard-hero">
+                    <div class="header-top">
+                        <div class="container">
+                            <div class="mobile-header d-flex justify-content-between d-lg-none align-items-center">
+                                <div class="author">
+                                    <img src="assets/images/dashboard/author.png" alt="dashboard">
+                                </div>
+                                <div class="cross-header-bar">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div
+                                class="mobile-header-content d-lg-flex flex-wrap justify-content-lg-between align-items-center">
+                                <ul class="support-area">
+                                    <li>
+                                        <a href="#0"><i class="flaticon-support"></i>Support</a>
+                                    </li>
+                                    <li>
+                                        <a href="Mailto:astrader424@gmail.com"><i class="flaticon-email"></i><span
+                                                data-cfemail="deb7b0b8b19eb6a7b7aeb2bfb0baf0bdb1b3">astrader424@gmail.com</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <i class="flaticon-globe"></i>
+                                        <div class="select-area">
+                                            <select class="select-bar" style="display: none;">
+                                                <option value="en">English</option>
+                                                <option value="bn">Bangla</option>
+                                                <option value="sp">Spanish</option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div
+                                    class="dashboard-header-right d-flex justify-content-center justify-content-sm-between justify-content-lg-end align-items-center">
+                                    <form class="dashboard-header-search mr-sm-4">
+                                        <label for="search"><i class="flaticon-magnifying-glass"></i></label>
+                                        <input type="text" placeholder="Search...">
+                                    </form>
+                                    <ul class="dashboard-right-menus" style="flex-wrap: nowrap;">
+                                        <li>
+                                            <a href="#0">
+                                                <i class="flaticon-email-1"></i>
+                                                <span class="number bg-theme-2">4</span>
+                                            </a>
+                                            <div class="notification-area">
+                                                <div
+                                                    class="notifacation-header d-flex flex-wrap justify-content-between">
+                                                    <span>4 New Notifications</span>
+                                                    <a href="#0">Clear</a>
+                                                </div>
+                                            
+                                                <div class="notifacation-footer text-center">
+                                                    <a href="#0" class="view-all">View All</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#0">
+                                                <i class="flaticon-notification"></i>
+                                                <span class="number bg-theme">4</span>
+                                            </a>
+                                            <div class="notification-area">
+                                                <div
+                                                    class="notifacation-header d-flex flex-wrap justify-content-between">
+                                                    <span>4 New Notifications</span>
+                                                    <a href="#0">Clear</a>
+                                                </div>
+                                               
+                                                <div class="notifacation-footer text-center">
+                                                    <a href="#0" class="view-all">View All</a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <a href="#0" class="author">
+                                                <div class="thumb">
+                                                    <img id="author-image" src="assets/images/dashboard/author.png"
+                                                        alt="dashboard">
+                                                    <span class="checked">
+                                                        <i class="flaticon-checked"></i>
+                                                    </span>
+                                                </div>
+                                                <div class="content">
+                                                    <h6 id="author-name" class="title">User</h6>
+                                                    <span id="author-country" class="country">India</span>
+                                                </div>
+                                            </a>
+                                            <div class="notification-area">
+                                                <div class="author-header">
+                                                    <div class="thumb">
+                                                        <img id="author-header-image"
+                                                            src="assets/images/dashboard/author.png" alt="dashboard">
+                                                    </div>
+                                                    <h6 id="author-header-name" class="title">User</h6>
+                                                    <a id="author-email" href="mailto:#"><span class="__cf_email__"
+                                                            data-cfemail="28624740464c474d684f45494144064b4745">[email&#160;protected]</span></a>
+                                                </div>
+                                                <div class="author-body">
+                                                    <ul>
+                                                        <!-- <li>
+                                                            <a href="#0"><i class="far fa-user"></i>Profile</a>
+                                                        </li> -->
+                                                        <li>
+                                                            <a href="setting.html"><i class="fas fa-user-edit"></i>Edit
+                                                                Profile</a>
+                                                        </li>
+                                                        <li id="sponsor-id">
+                                                            <i class="fas fa-user"></i><span
+                                                                id="sponsorIdText">Loading...</span>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dashboard-hero-content text-white">
+                        <h3 class="title">Welcome Letter</h3>
+                        <ul class="breadcrumb">
+                            <li>
+                                <a href="index.html">Home</a>
+                            </li>
+                            <li>
+                                Welcome Letter
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <div class="row pb-30">
+                        <div class="col-lg-12">
+                            <div class="welcome-letter">
+                                <h1>Welcome Letter</h1>
+                                <div class="content">
+                                    <p><strong>Welcome To AS TRADER</strong></p>
+                                    <p><strong>Life Changing Opportunity</strong></p>
+                                    <p><strong>Dear <span id="user-name">[USER_NAME]</span>,</strong></p>
+                                    <p>Register Date: <span id="register-date">[REGISTER_DATE]</span></p>
+                                    <p>Thank You</p>
+                                    <p>It is with great joy that I extend this warm welcome on behalf of our company's
+                                        management and Team. I hope your journey with us will remain fruitful.</p>
+                                    <p>I assure you of complete support from the team in executing works as directed by
+                                        you. I will be glad to assist you during your settling period.</p>
+                                    <p>I welcome you once again and hope you have a memorable work stint at our
+                                        organization.</p>
+                                    <p>Regards,</p>
+                                    <p>Team</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid sticky-bottom">
+                    <div class="dashboard-footer">
+                        <div class="d-flex flex-wrap justify-content-between m-0-15-none">
+                            <div class="left">
+                                &copy; 2024 <a href="#0">AS Trader</a> | All right reserved.
+                            </div>
+                            <div class="right">
+                                <ul>
+                                    <li>
+                                        <a href="#0">Terms of use</a>
+                                    </li>
+                                    <li>
+                                        <a href="#0">Privacy policy</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!--=======SideHeader-Section Ends Here=======-->
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close" style="text-align: end;">&times;</span>
+                <h2 id="modal-title"></h2>
+                <img class="image" src="/assets/images/qr.jpg" alt="QR Code">
+
+                <p style="text-align:center;">Upi Address Code</p>
+                <div class="bank-details">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Bank</th>
+                                <th>Account</th>
+                                <th>IFSC</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>BANK OF BARODA</td>
+                                <td>36050200001311</td>
+                                <td>BARB0MCKAUS</td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+
+                </div>
+                <div class="upload-receipt">
+                    <label for="receipt">Receipt</label>
+                    <input type="file" id="receipt">
+                </div>
+                <button id="start-button" style="width: 150px; height: 40px; margin: 15px 0;">Click to Start</button>
+                <hr>
+                <span class="close" style="text-align: end;">Close</span>
+            </div>
+        </div>
+    </div>
+
+
+    </div>
+    <script type="module" src="./script/auth1.js"></script>
+    <script type="module" src="./script/user-detail.js"></script>
+    <script type="module" src="./script/sponsorId.js"></script>
+    <script src="assets/js/jquery-3.3.1.min.js"></script>
+    <script src="assets/js/modernizr-3.6.0.min.js"></script>
+    <script src="assets/js/plugins.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/magnific-popup.min.js"></script>
+    <script src="assets/js/jquery-ui.min.js"></script>
+    <script src="assets/js/wow.min.js"></script>
+    <script src="assets/js/odometer.min.js"></script>
+    <script src="assets/js/viewport.jquery.js"></script>
+    <script src="assets/js/nice-select.js"></script>
+    <script src="assets/js/owl.min.js"></script>
+    <script src="assets/js/paroller.js"></script>
+    <script src="assets/js/chart.js"></script>
+    <script src="assets/js/circle-progress.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        $('.progress1.circle').circleProgress({
+            value: .75,
+            fill: {
+                gradient: ['#00cca2', '#00cca2']
+            },
+        }).on('circle-animation-progress', function (event, progress) {
+            $(this).find('strong').html(Math.round(75 * progress) + '<i>%</i>');
+        });
+        $('.progress2.circle').circleProgress({
+            value: .90,
+            fill: {
+                gradient: ['#8d16e8', '#8d16e8']
+            },
+        }).on('circle-animation-progress', function (event, progress) {
+            $(this).find('strong').html(Math.round(90 * progress) + '<i>%</i>');
+        });
+        $('.progress3.circle').circleProgress({
+            value: .85,
+            fill: {
+                gradient: ['#ef764c', '#ef764c']
+            },
+        }).on('circle-animation-progress', function (event, progress) {
+            $(this).find('strong').html(Math.round(85 * progress) + '<i>%</i>');
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const modal = document.getElementById("modal");
+            const closeBtn = document.querySelector(".close");
+            const buyButtons = document.querySelectorAll(".buy-package");
+            const modalTitle = document.getElementById("modal-title");
+
+            buyButtons.forEach(button => {
+                button.addEventListener("click", function () {
+                    const packageName = this.getAttribute("data-package");
+                    modalTitle.textContent = packageName;
+                    modal.style.display = "block";
+                });
+            });
+
+            closeBtn.onclick = function () {
+                modal.style.display = "none";
+            };
+
+            window.onclick = function (event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
+        });
+
+    </script>
+    <script>
+        // Replace this with the actual logic to get the logged-in user's name
+        const userName = "User Name"; // Example name
+
+        document.getElementById("user-name").textContent = userName;
+    </script>
+</body>
+
+
+</html>
