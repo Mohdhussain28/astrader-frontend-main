@@ -15,7 +15,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
-const baseUrl = "https://astrader-backend.onrender.com";
+const baseUrl = "https://astrader-backend-ccth.onrender.com";
 
 
 function setCookie(name, value, days) {
@@ -29,14 +29,14 @@ document.getElementById('signInForm').addEventListener('submit', (event) => {
     const password = document.getElementById('password').value;
 
     signInWithEmailAndPassword(auth, email, password)
-    .then(userCredential => {
-        const uid = userCredential.user.uid;
-        userCredential.user.getIdToken().then(token => {
-            setCookie('authToken', token, 7); // Save token for 7 days
-            setCookie('uid', uid, 7); // Save UID for 7 days
-            window.location.href = 'dashboard.html';
-        });
-    }).catch(error => {
+        .then(userCredential => {
+            const uid = userCredential.user.uid;
+            userCredential.user.getIdToken().then(token => {
+                setCookie('authToken', token, 7); // Save token for 7 days
+                setCookie('uid', uid, 7); // Save UID for 7 days
+                window.location.href = 'dashboard.html';
+            });
+        }).catch(error => {
             console.error('Full error object:', error);  // Log the error object
 
             let errorMessage;

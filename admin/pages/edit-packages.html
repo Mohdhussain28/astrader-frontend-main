@@ -318,211 +318,211 @@
   <script src="../assets/js/script.js"></script>
   <script type="module" src="../../script/auth1.js"></script>
   <script>
-  // const baseUrl = "http://localhost:3000";
-  const baseUrl = "https://astrader-backend.onrender.com";
+    // const baseUrl = "http://localhost:3000";
+    const baseUrl = "https://astrader-backend-ccth.onrender.com";
 
-  let currentEditingPackageId = null;
-  let authToken;
+    let currentEditingPackageId = null;
+    let authToken;
 
-  function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-  }
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(';').shift();
+    }
 
-  async function validateAuthToken() {
-    authToken = getCookie('authToken');
-    if (authToken) {
-      try {
-        const response = await fetch(`${baseUrl}/admin/admin-verifier`, {
-          headers: {
-            'Authorization': `${authToken}`
+    async function validateAuthToken() {
+      authToken = getCookie('authToken');
+      if (authToken) {
+        try {
+          const response = await fetch(`${baseUrl}/admin/admin-verifier`, {
+            headers: {
+              'Authorization': `${authToken}`
+            }
+          });
+
+          if (response.ok) {
+            return true;
+          } else {
+            throw new Error('Invalid auth token');
           }
-        });
-
-        if (response.ok) {
-          return true;
-        } else {
-          throw new Error('Invalid auth token');
+        } catch (error) {
+          alert('Session expired or invalid token. Redirecting to sign-in page.');
+          window.location.href = '/sign-in.html';
+          return false;
         }
-      } catch (error) {
-        alert('Session expired or invalid token. Redirecting to sign-in page.');
+      } else {
+        alert('No auth token found. Redirecting to sign-in page.');
         window.location.href = '/sign-in.html';
         return false;
       }
-    } else {
-      alert('No auth token found. Redirecting to sign-in page.');
-      window.location.href = '/sign-in.html';
-      return false;
     }
-  }
 
-  document.addEventListener('DOMContentLoaded', async function () {
-    const isValidToken = await validateAuthToken();
+    document.addEventListener('DOMContentLoaded', async function () {
+      const isValidToken = await validateAuthToken();
 
-    if (!isValidToken) {
-      return;
+      if (!isValidToken) {
+        return;
+      }
+      await loadPackages();
+    });
+
+    async function loadPackages() {
+      try {
+        const response = await fetch(`${baseUrl}/admin/all-package`);
+        const data = await response.json();
+
+        if (response.ok) {
+          data.packages.forEach(pkg => {
+            addPackageToTable(pkg);
+          });
+        } else {
+          alert(`Error: ${data.message}`);
+        }
+      } catch (error) {
+        console.error('Error loading packages:', error);
+      }
     }
-    await loadPackages();
-  });
 
-  async function loadPackages() {
-    try {
-      const response = await fetch(`${baseUrl}/admin/all-package`);
-      const data = await response.json();
+    function addPackageToTable(pkg) {
+      var packageList = document.getElementById('packageList');
+      var newRow = packageList.insertRow();
+      newRow.id = `package-${pkg.id}`;
+      newRow.insertCell(0).innerText = pkg.packageName;
+      newRow.insertCell(1).innerText = pkg.amount;
+      newRow.insertCell(2).innerText = pkg.dailyIncome;
+      newRow.insertCell(3).innerText = pkg.duration;
+      newRow.insertCell(4).innerText = pkg.totalRevenue;
 
-      if (response.ok) {
-        data.packages.forEach(pkg => {
-          addPackageToTable(pkg);
+      var actionCell = newRow.insertCell(5);
+      var editButton = document.createElement('button');
+      editButton.className = 'btn btn-primary';
+      editButton.innerText = 'Edit';
+      editButton.onclick = function () { editPackage(pkg.id); };
+      actionCell.appendChild(editButton);
+
+      var deleteButton = document.createElement('button');
+      deleteButton.className = 'btn btn-danger mt-2';
+      deleteButton.innerText = 'Delete';
+      deleteButton.onclick = function () { deletePackage(pkg.id); };
+      actionCell.appendChild(deleteButton);
+    }
+
+    async function addPackage() {
+      const newPackage = {
+        packageName: document.getElementById('packageName').value,
+        amount: Number(document.getElementById('amount').value),
+        dailyIncome: Number(document.getElementById('dailyIncome').value),
+        duration: Number(document.getElementById('duration').value),
+        totalRevenue: Number(document.getElementById('totalRevenue').value)
+      };
+
+      try {
+        const response = await fetch(`${baseUrl}/admin/create-package`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newPackage)
         });
-      } else {
-        alert(`Error: ${data.message}`);
+
+        const data = await response.json();
+        if (response.ok) {
+          alert('Package added successfully');
+          addPackageToTable(data.package);
+          resetForm();
+        } else {
+          alert(`Error: ${data.message}`);
+        }
+      } catch (error) {
+        console.error('Error adding package:', error);
       }
-    } catch (error) {
-      console.error('Error loading packages:', error);
     }
-  }
 
-  function addPackageToTable(pkg) {
-    var packageList = document.getElementById('packageList');
-    var newRow = packageList.insertRow();
-    newRow.id = `package-${pkg.id}`;
-    newRow.insertCell(0).innerText = pkg.packageName;
-    newRow.insertCell(1).innerText = pkg.amount;
-    newRow.insertCell(2).innerText = pkg.dailyIncome;
-    newRow.insertCell(3).innerText = pkg.duration;
-    newRow.insertCell(4).innerText = pkg.totalRevenue;
+    async function editPackage(packageId) {
+      try {
+        const response = await fetch(`${baseUrl}/admin/single-package/${packageId}`);
+        const data = await response.json();
+        if (response.ok) {
 
-    var actionCell = newRow.insertCell(5);
-    var editButton = document.createElement('button');
-    editButton.className = 'btn btn-primary';
-    editButton.innerText = 'Edit';
-    editButton.onclick = function () { editPackage(pkg.id); };
-    actionCell.appendChild(editButton);
+          document.getElementById('packageName').value = data.package.packageName;
+          document.getElementById('amount').value = data.package.amount;
+          document.getElementById('dailyIncome').value = data.package.dailyIncome;
+          document.getElementById('duration').value = data.package.duration;
+          document.getElementById('totalRevenue').value = data.package.totalRevenue;
 
-    var deleteButton = document.createElement('button');
-    deleteButton.className = 'btn btn-danger mt-2';
-    deleteButton.innerText = 'Delete';
-    deleteButton.onclick = function () { deletePackage(pkg.id); };
-    actionCell.appendChild(deleteButton);
-  }
+          document.getElementById('saveButton').innerText = 'Save Changes';
+          document.getElementById('saveButton').onclick = function () { savePackage(packageId); };
 
-  async function addPackage() {
-    const newPackage = {
-      packageName: document.getElementById('packageName').value,
-      amount: Number(document.getElementById('amount').value),
-      dailyIncome: Number(document.getElementById('dailyIncome').value),
-      duration: Number(document.getElementById('duration').value),
-      totalRevenue: Number(document.getElementById('totalRevenue').value)
-    };
-
-    try {
-      const response = await fetch(`${baseUrl}/admin/create-package`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(newPackage)
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert('Package added successfully');
-        addPackageToTable(data.package);
-        resetForm();
-      } else {
-        alert(`Error: ${data.message}`);
+          currentEditingPackageId = packageId;
+        } else {
+          alert(`Error: ${data.message}`);
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    } catch (error) {
-      console.error('Error adding package:', error);
     }
-  }
 
-  async function editPackage(packageId) {
-    try {
-      const response = await fetch(`${baseUrl}/admin/single-package/${packageId}`);
-      const data = await response.json();
-      if (response.ok) {
+    async function savePackage(packageId) {
+      const updatedPackage = {
+        packageName: document.getElementById('packageName').value,
+        amount: Number(document.getElementById('amount').value),
+        dailyIncome: Number(document.getElementById('dailyIncome').value),
+        duration: Number(document.getElementById('duration').value),
+        totalRevenue: Number(document.getElementById('totalRevenue').value)
+      };
 
-        document.getElementById('packageName').value = data.package.packageName;
-        document.getElementById('amount').value = data.package.amount;
-        document.getElementById('dailyIncome').value = data.package.dailyIncome;
-        document.getElementById('duration').value = data.package.duration;
-        document.getElementById('totalRevenue').value = data.package.totalRevenue;
+      try {
+        const response = await fetch(`${baseUrl}/admin/update-package/${packageId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(updatedPackage)
+        });
 
-        document.getElementById('saveButton').innerText = 'Save Changes';
-        document.getElementById('saveButton').onclick = function () { savePackage(packageId); };
+        const data = await response.json();
+        if (response.ok) {
+          alert('Package updated successfully');
+          var pkgRow = document.getElementById(`package-${packageId}`);
+          pkgRow.cells[0].innerText = updatedPackage.packageName;
+          pkgRow.cells[1].innerText = updatedPackage.amount;
+          pkgRow.cells[2].innerText = updatedPackage.dailyIncome;
+          pkgRow.cells[3].innerText = updatedPackage.duration;
+          pkgRow.cells[4].innerText = updatedPackage.totalRevenue;
 
-        currentEditingPackageId = packageId;
-      } else {
-        alert(`Error: ${data.message}`);
+          resetForm();
+        } else {
+          alert(`Error: ${data.message}`);
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    } catch (error) {
-      console.error('Error:', error);
     }
-  }
 
-  async function savePackage(packageId) {
-    const updatedPackage = {
-      packageName: document.getElementById('packageName').value,
-      amount: Number(document.getElementById('amount').value),
-      dailyIncome: Number(document.getElementById('dailyIncome').value),
-      duration: Number(document.getElementById('duration').value),
-      totalRevenue: Number(document.getElementById('totalRevenue').value)
-    };
+    async function deletePackage(packageId) {
+      try {
+        const response = await fetch(`${baseUrl}/admin/delete-package/${packageId}`, {
+          method: 'DELETE'
+        });
 
-    try {
-      const response = await fetch(`${baseUrl}/admin/update-package/${packageId}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(updatedPackage)
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert('Package updated successfully');
-        var pkgRow = document.getElementById(`package-${packageId}`);
-        pkgRow.cells[0].innerText = updatedPackage.packageName;
-        pkgRow.cells[1].innerText = updatedPackage.amount;
-        pkgRow.cells[2].innerText = updatedPackage.dailyIncome;
-        pkgRow.cells[3].innerText = updatedPackage.duration;
-        pkgRow.cells[4].innerText = updatedPackage.totalRevenue;
-
-        resetForm();
-      } else {
-        alert(`Error: ${data.message}`);
+        const data = await response.json();
+        if (response.ok) {
+          alert('Package deleted successfully');
+          document.getElementById(`package-${packageId}`).remove();
+        } else {
+          alert(`Error: ${data.message}`);
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
-    } catch (error) {
-      console.error('Error:', error);
     }
-  }
 
-  async function deletePackage(packageId) {
-    try {
-      const response = await fetch(`${baseUrl}/admin/delete-package/${packageId}`, {
-        method: 'DELETE'
-      });
-
-      const data = await response.json();
-      if (response.ok) {
-        alert('Package deleted successfully');
-        document.getElementById(`package-${packageId}`).remove();
-      } else {
-        alert(`Error: ${data.message}`);
-      }
-    } catch (error) {
-      console.error('Error:', error);
+    function resetForm() {
+      document.getElementById('packageForm').reset();
+      document.getElementById('saveButton').innerText = 'Add Package';
+      currentEditingPackageId = null;
     }
-  }
-
-  function resetForm() {
-    document.getElementById('packageForm').reset();
-    document.getElementById('saveButton').innerText = 'Add Package';
-    currentEditingPackageId = null;
-  }
-</script>
+  </script>
 
 
 </body>

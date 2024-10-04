@@ -1,5 +1,5 @@
-// const baseUrl = "https://astrader-backend.onrender.com";
-const baseUrl = "http://localhost:3000"
+const baseUrl = "https://astrader-backend-ccth.onrender.com";
+// const baseUrl = "http://localhost:3000"
 let authToken;
 
 function getCookie(name) {

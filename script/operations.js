@@ -1,4 +1,4 @@
-const baseUrl = "https://astrader-backend.onrender.com";
+const baseUrl = "https://astrader-backend-ccth.onrender.com";
 
 let authToken;
 

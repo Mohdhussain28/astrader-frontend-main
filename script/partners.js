@@ -1,4 +1,4 @@
-const baseUrl = "https://astrader-backend.onrender.com";
+const baseUrl = "https://astrader-backend-ccth.onrender.com";
 let authToken;
 let sponsorId;
 
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     // Event listener for the button
-   // button.addEventListener('click', copyToClipboard());
+    // button.addEventListener('click', copyToClipboard());
 
     // Generate a new referral link on page load
     await generateNewLink();

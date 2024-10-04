@@ -1,4 +1,4 @@
-const baseUrl = "https://astrader-backend.onrender.com";
+const baseUrl = "https://astrader-backend-ccth.onrender.com";
 
 function setCookie(name, value, days) {
     const expires = new Date(Date.now() + days * 864e5).toUTCString();
@@ -18,7 +18,7 @@ document.getElementById('signUpForm').addEventListener('submit', (event) => {
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ sponsorId, fullName, email, password,secondaryEmail })
+        body: JSON.stringify({ sponsorId, fullName, email, password, secondaryEmail })
     }).then(response => {
         if (response.ok) {
             response.json().then(data => {

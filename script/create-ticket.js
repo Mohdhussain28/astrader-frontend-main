@@ -1,5 +1,5 @@
 // const baseUrl = "http://127.0.0.1:5001/as-trader-dcb91/us-central1/v1";
-const baseUrl = "https://astrader-backend.onrender.com";
+const baseUrl = "https://astrader-backend-ccth.onrender.com";
 let authToken;
 // Function to get the value of a specific cookie
 function getCookie(name) {
