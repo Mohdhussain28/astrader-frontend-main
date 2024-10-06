@@ -232,6 +232,8 @@
     <div class="message-wrapper border-0 bg-white shadow rounded mb-4">
       <div class="card hover-state border-bottom rounded-0 rounded-top py-3">
         <div class="container mt-5">
+          <h4>Excluded date</h4>
+          <p id="excludedDatesText">Loading excluded dates...</p>
           <h2 class="text-center">Package Management</h2>
 
           <!-- Form for Adding/Editing Packages -->
@@ -364,6 +366,7 @@
         return;
       }
       await loadPackages();
+      await loadExcludedDates();
     });
 
     async function loadPackages() {
@@ -382,6 +385,24 @@
         console.error('Error loading packages:', error);
       }
     }
+
+    async function loadExcludedDates() {
+      try {
+        const response = await fetch(`${baseUrl}/admin/view-excluded-days`);
+        const data = await response.json();
+
+        if (response.ok) {
+          // Assuming the API returns an array of numbers, join them as a comma-separated string
+          document.getElementById('excludedDatesText').innerText = `Excluded Dates: ${data.join(', ')}`;
+        } else {
+          alert(`Error: ${data.message}`);
+        }
+      } catch (error) {
+        console.error('Error loading excluded dates:', error);
+        document.getElementById('excludedDatesText').innerText = 'Failed to load excluded dates';
+      }
+    }
+
 
     function addPackageToTable(pkg) {
       var packageList = document.getElementById('packageList');
